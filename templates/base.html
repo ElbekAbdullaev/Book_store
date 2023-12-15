@@ -1,0 +1,135 @@
+  {% comment %} {% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}Bookstore{% endblock title %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+<header>
+<!-- Fixed navbar -->
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4
+mb-3 bg-white border-bottom shadow-sm">
+<a href="{% url 'home' %}" class="navbar-brand my-0 mr-md-auto
+font-weight-normal">Bookstore</a>
+<nav class="my-2 my-md-0 mr-md-3">
+    <a class="btn btn-outline-primary" href="{% url 'about' %}">About</a>
+{% if user.is_authenticated %}
+<a class="btn btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+{% else %}
+<a class="btn btn-outline-primary" href="{% url 'login' %}">Log In</a>
+<a class="btn btn-outline-primary"
+href="{% url 'signup' %}">Sign Up</a>
+{% endif %}
+</nav>
+</div>
+</header>
+<div class="container">
+{% block content %}
+{% endblock content %}
+</div>
+<!-- JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8\
+abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/\
+umd/popper.min.js" integrity="sha384UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1\
+clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>  {% endcomment %}
+ {% load static %}
+
+{% block extrahead %}
+    <script>window.CKEDITOR._BASEPATH='/static/ckeditor/';</script>
+    {{ block.super }}
+{% endblock %}    
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title  %}Bookstore{% endblock title  %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-info navbar-expand-lg">
+            <a class="navbar-brand" href="#">
+               
+                Bookstore
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#"
+               id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                {{ user.username | title }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-end"
+                 aria-labelledby="navbarDropdown">
+            
+
+                <div class="dropdown-divider"></div>
+           
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'logout' %}">Exit</a>
+            </div>
+        </li>
+    </ul>
+    {% else %}
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a href="{% url 'login' %}"class="btn btn-outline-light">Login</a>
+        </li>
+        <li class="nav-item">
+            <a href="{% url 'signup' %}" class="btn btn-outline-light">Signup</a>
+        </li>
+        {% comment %} <li class="nav-item">
+            <a href="{% url 'about' %}" class="btn btn-outline-primary">About</a> {% endcomment %}
+        </li>    
+    </ul>
+    {% endif %}
+</div>
+</nav>                
+<nav class="my-2 my-md-0 mr-md-3">
+    <a class="btn btn-outline-dark" href="{% url 'book_list' %}">Books</a>
+    <a class="btn btn-outline-dark" href="{% url 'about' %}">About</a>
+    
+
+          
+<main>
+    <div class="container">
+
+        {% block content %}
+        {% endblock content %}
+    </div>    
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+
